@@ -1,0 +1,86 @@
+<header class="site-header" [class.is-scrolled]="scrolled()">
+    <div class="header-inner container">
+        <a class="brand" routerLink="/home" (click)="closeMobileNav()" aria-label="Rumen Terziev — Home">
+            <span class="brand-mark" aria-hidden="true">RT</span>
+            <span class="brand-name">Rumen<span class="brand-accent">.</span>dev</span>
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary">
+            <ul role="list">
+                <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+                <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+                <li>
+                    <a routerLink="/applications" routerLinkActive="active">Applications</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <button type="button" class="icon-btn" (click)="toggleTheme()"
+                [attr.aria-label]="theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
+                [title]="theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'">
+                <span class="material-icons-outlined" aria-hidden="true">
+                    {{ theme() === 'dark' ? 'light_mode' : 'dark_mode' }}
+                </span>
+            </button>
+
+            @if (isAuthenticated()) {
+            <button type="button" class="user-chip hide-sm" [matMenuTriggerFor]="profileMenu" aria-label="Account menu">
+                <span class="avatar" aria-hidden="true">
+                    {{ (username() || 'U').charAt(0).toUpperCase() }}
+                </span>
+                <span class="user-chip-name">{{ username() }}</span>
+                <span class="material-icons-outlined" aria-hidden="true">expand_more</span>
+            </button>
+            <mat-menu #profileMenu="matMenu" xPosition="before">
+                <a mat-menu-item routerLink="/profile">
+                    <span class="material-icons-outlined">person</span>
+                    <span>Profile</span>
+                </a>
+                <a mat-menu-item routerLink="/applications">
+                    <span class="material-icons-outlined">apps</span>
+                    <span>Applications</span>
+                </a>
+                <button mat-menu-item (click)="logout()">
+                    <span class="material-icons-outlined">logout</span>
+                    <span>Sign out</span>
+                </button>
+            </mat-menu>
+            }
+
+            <button type="button" class="icon-btn hamburger" (click)="toggleMobileNav()"
+                [attr.aria-expanded]="mobileNavOpen()" aria-label="Toggle navigation menu" aria-controls="mobile-nav">
+                <span class="material-icons-outlined" aria-hidden="true">
+                    {{ mobileNavOpen() ? 'close' : 'menu' }}
+                </span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<div id="mobile-nav" class="mobile-nav" [class.open]="mobileNavOpen()" [attr.aria-hidden]="!mobileNavOpen()">
+    <nav aria-label="Mobile">
+        <ul role="list">
+            <li><a routerLink="/home" (click)="closeMobileNav()">Home</a></li>
+            <li><a routerLink="/about" (click)="closeMobileNav()">About</a></li>
+            <li>
+                <a routerLink="/applications" (click)="closeMobileNav()">Applications</a>
+            </li>
+            @if (isAuthenticated()) {
+            <li>
+                <a routerLink="/profile" (click)="closeMobileNav()">Profile</a>
+            </li>
+            }
+        </ul>
+        <div class="mobile-nav-actions">
+            @if (isAuthenticated()) {
+            <button class="btn btn-outline btn-block" type="button" (click)="logout()">Sign out</button>
+            }
+        </div>
+    </nav>
+</div>
+
+@if (mobileNavOpen()) {
+<button type="button" class="mobile-nav-backdrop" (click)="closeMobileNav()" aria-label="Close navigation">
+</button>
+}

@@ -1,0 +1,106 @@
+.conversions-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.conversions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--border);
+}
+
+.conversions-header h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.conversions-header p {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-sm);
+}
+
+.conversions-empty {
+  padding: var(--space-10) var(--space-6);
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.conversions-empty .material-icons-outlined {
+  font-size: 2.5rem;
+  display: block;
+  margin: 0 auto var(--space-3);
+  opacity: 0.6;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.conversions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.conversions-table th,
+.conversions-table td {
+  padding: var(--space-3) var(--space-5);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.conversions-table thead {
+  background: var(--surface-2);
+}
+
+.conversions-table th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: var(--text-xs);
+}
+
+.conversions-table tbody tr {
+  border-top: 1px solid var(--border);
+  transition: background 120ms ease;
+}
+
+.conversions-table tbody tr:hover {
+  background: var(--surface-2);
+}
+
+.conversions-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.conversions-table .strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.conversions-table .muted {
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.page-indicator {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}

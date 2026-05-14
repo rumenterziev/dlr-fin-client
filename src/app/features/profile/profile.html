@@ -1,0 +1,102 @@
+<section class="profile-page section">
+    <div class="container profile-grid">
+
+        <aside class="profile-side">
+            <div class="profile-avatar-card">
+                @if (!isLoading()) {
+                <div class="avatar-wrap">
+                    <img [src]="pictureUrl()" alt="" referrerpolicy="no-referrer" />
+                </div>
+                <h2 class="profile-name">{{ finUser()?.username }}</h2>
+                <p class="profile-email">{{ finUser()?.email }}</p>
+                } @else {
+                <div class="avatar-wrap"><span class="skeleton avatar-skel" aria-hidden="true"></span></div>
+                <span class="skeleton skel-line" style="width: 60%; margin: var(--space-4) auto var(--space-2);"></span>
+                <span class="skeleton skel-line" style="width: 80%; margin: 0 auto;"></span>
+                }
+            </div>
+        </aside>
+
+        <main class="profile-main">
+            <header class="profile-header">
+                <span class="eyebrow">Account</span>
+                <h1>Your profile</h1>
+                <p class="lead">
+                    Your account is managed by Google. To change your name, email or password, update them in your
+                    Google account &mdash; the changes will sync the next time you sign in.
+                </p>
+            </header>
+
+            @if (!isLoading()) {
+            <dl class="info-list">
+                <div>
+                    <dt>Username</dt>
+                    <dd>{{ finUser()?.username }}</dd>
+                </div>
+                <div>
+                    <dt>Email</dt>
+                    <dd>{{ finUser()?.email }}</dd>
+                </div>
+                <div>
+                    <dt>Sign-in method</dt>
+                    <dd>Google</dd>
+                </div>
+            </dl>
+            } @else {
+            <div class="info-list" aria-hidden="true">
+                <span class="skeleton skel-row"></span>
+                <span class="skeleton skel-row"></span>
+                <span class="skeleton skel-row"></span>
+            </div>
+            }
+
+            <div class="profile-actions">
+                <a class="btn btn-ghost" href="https://myaccount.google.com/" target="_blank" rel="noopener noreferrer">
+                    <span class="material-icons-outlined" aria-hidden="true">open_in_new</span>
+                    Manage on Google
+                </a>
+            </div>
+
+            <section class="privacy-section">
+                <h2>Privacy &amp; data</h2>
+                <p class="lead">
+                    Under GDPR you have the right to access and delete the personal data we hold about you.
+                </p>
+
+                <div class="privacy-actions">
+                    <button class="btn" type="button" (click)="exportData()" [disabled]="isLoading() || isExporting()">
+                        <span class="material-icons-outlined" aria-hidden="true">download</span>
+                        @if (!isExporting()) { Export my data } @else { Preparing… }
+                    </button>
+
+                    @if (!confirmDelete()) {
+                    <button class="btn btn-danger" type="button" (click)="requestDelete()" [disabled]="isLoading()">
+                        <span class="material-icons-outlined" aria-hidden="true">delete_forever</span>
+                        Delete my account
+                    </button>
+                    }
+                </div>
+
+                @if (confirmDelete()) {
+                <div class="danger-zone" role="alertdialog" aria-labelledby="delete-title">
+                    <h3 id="delete-title">Delete your account?</h3>
+                    <p>
+                        This permanently removes your profile, history and any data we hold about you.
+                        This action cannot be undone.
+                    </p>
+                    <div class="profile-actions">
+                        <button class="btn btn-danger" type="button" (click)="deleteAccount()"
+                            [disabled]="isDeleting()">
+                            @if (!isDeleting()) { Yes, delete everything } @else { Deleting… }
+                        </button>
+                        <button class="btn btn-ghost" type="button" (click)="cancelDelete()" [disabled]="isDeleting()">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+                }
+            </section>
+        </main>
+
+    </div>
+</section>

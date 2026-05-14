@@ -1,0 +1,12 @@
+<div class="cert-dialog-content">
+    <header class="cert-dialog-header">
+        <div>
+            <h2>{{ data.title }}</h2>
+            <p>{{ data.issuer }}</p>
+        </div>
+        <button type="button" class="icon-btn" (click)="close()" aria-label="Close">
+            <span class="material-icons-outlined" aria-hidden="true">close</span>
+        </button>
+    </header>
+    <img [src]="data.image" [alt]="data.title" />
+</div>

@@ -1,0 +1,69 @@
+<section class="apps-hero section">
+    <div class="container container-narrow text-center">
+        <span class="eyebrow">Applications</span>
+        <h1>Tools I built — try them live</h1>
+        <p class="lead">
+            A small collection of demo apps that showcase what this stack can do. Choose one to get started.
+        </p>
+    </div>
+</section>
+
+@if (!isAuthenticated()) {
+<section class="section signin-cta-section" style="padding-top: 0;" aria-labelledby="signin-cta-title">
+    <div class="container">
+        <div class="signin-cta">
+            <div class="signin-cta-icon" aria-hidden="true">
+                <span class="material-icons-outlined">lock_open</span>
+            </div>
+            <div class="signin-cta-body">
+                <h2 id="signin-cta-title">Unlock the full experience</h2>
+                <p>
+                    The currency converter works anonymously, but signing in lets you save your conversion history and
+                    chat with the AI assistant. We use Google &mdash; no passwords, no fuss.
+                </p>
+            </div>
+            <div class="signin-cta-action">
+                <a class="btn" routerLink="/login">
+                    <span class="material-icons-outlined" aria-hidden="true">login</span>
+                    Sign in with Google
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+}
+
+<section class="section" style="padding-top: 0;">
+    <div class="container">
+        <div class="apps-grid">
+            @for (app of apps; track app.route) {
+            <a [routerLink]="['/applications', app.route]" class="app-card card-hover">
+                <div class="app-icon">
+                    <span class="material-icons-outlined" aria-hidden="true">{{ app.icon }}</span>
+                </div>
+                <div class="app-body">
+                    <div class="app-tags">
+                        <span class="chip chip-neutral">{{ app.tag }}</span>
+                        @if (app.requiresAuth) {
+                        <span class="chip chip-auth" [class.chip-locked]="!isAuthenticated()">
+                            <span class="material-icons-outlined" aria-hidden="true">
+                                {{ isAuthenticated() ? 'lock_open' : 'lock' }}
+                            </span>
+                            {{ isAuthenticated() ? 'Signed in' : 'Sign-in required' }}
+                        </span>
+                        }
+                    </div>
+                    <h3>{{ app.title }}</h3>
+                    <p>{{ app.description }}</p>
+                    <span class="app-link">
+                        Open app
+                        <span class="material-icons-outlined" aria-hidden="true">arrow_forward</span>
+                    </span>
+                </div>
+            </a>
+            }
+        </div>
+    </div>
+</section>
+
+<router-outlet></router-outlet>

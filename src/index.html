@@ -1,13 +1,51 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
   <meta charset="utf-8">
-  <title>DlrFin</title>
+  <title>Rumen Terziev — Software Engineer</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description"
+    content="Portfolio of Rumen Terziev — full-stack software engineer building polished web applications with Angular, Java and Spring Boot.">
+  <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)">
+
+  <meta property="og:title" content="Rumen Terziev — Software Engineer">
+  <meta property="og:description"
+    content="Portfolio: Angular + Spring Boot apps including an AI chat assistant and currency converter.">
+  <meta property="og:type" content="website">
+
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+
+  <script>
+    // Apply persisted theme before paint to prevent FOUC.
+    (function () {
+      try {
+        var stored = localStorage.getItem('app-theme');
+        var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        var theme = stored || (prefersLight ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (_) { /* ignore */ }
+    })();
+  </script>
 </head>
-<body>
+
+<body class="mat-typography">
   <app-root></app-root>
+  <noscript>
+    <div style="padding:2rem;text-align:center;font-family:system-ui,sans-serif;">
+      This site requires JavaScript to run. Please enable it in your browser to continue.
+    </div>
+  </noscript>
 </body>
+
 </html>

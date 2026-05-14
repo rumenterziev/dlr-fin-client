@@ -1,0 +1,10 @@
+@if (visible()) {
+<div class="cookie-banner" role="region" aria-label="Cookie notice">
+    <p>
+        We use a single strictly-necessary cookie to keep you signed in. We do not use advertising
+        or analytics trackers. Read more in our
+        <a routerLink="/privacy">Privacy Policy</a>.
+    </p>
+    <button type="button" class="btn btn-sm" (click)="dismiss()">Got it</button>
+</div>
+}

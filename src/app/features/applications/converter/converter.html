@@ -1,0 +1,94 @@
+<section class="converter-page section">
+    <div class="container container-narrow">
+        <header class="converter-header text-center">
+            <span class="eyebrow">Currency converter</span>
+            <h1>Convert with live rates</h1>
+            <p class="lead">Pick a currency pair, enter an amount, and we'll compute the conversion.</p>
+            <p class="converter-disclaimer text-muted">
+                @if (isAuthenticated()) {
+                Conversions you run are saved to your history.
+                } @else {
+                Anonymous conversions are <strong>not</strong> stored.
+                <a routerLink="/login" [queryParams]="{ returnUrl: '/applications/converter' }">Sign in</a>
+                to keep a history.
+                }
+                See our <a routerLink="/privacy">Privacy Policy</a>.
+            </p>
+        </header>
+
+        <form class="converter-card" [formGroup]="form" (ngSubmit)="onConvertRequest()" novalidate>
+            <div class="converter-row">
+                <div class="field currency-field">
+                    <label for="fromCurrency">From</label>
+                    <div class="currency-select">
+                        <img [src]="fromFlag()" alt="" class="flag" />
+                        <select id="fromCurrency" formControlName="fromCurrency">
+                            @for (c of currencies; track c.code) {
+                            <option [value]="c.code">{{ c.code }} — {{ c.name }}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" class="swap-btn" (click)="swap()" aria-label="Swap currencies"
+                    title="Swap currencies">
+                    <span class="material-icons-outlined" aria-hidden="true">swap_horiz</span>
+                </button>
+
+                <div class="field currency-field">
+                    <label for="toCurrency">To</label>
+                    <div class="currency-select">
+                        <img [src]="toFlag()" alt="" class="flag" />
+                        <select id="toCurrency" formControlName="toCurrency">
+                            @for (c of currencies; track c.code) {
+                            <option [value]="c.code">{{ c.code }} — {{ c.name }}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="amount">Amount</label>
+                <input id="amount" type="number" inputmode="decimal" min="0" step="0.01" formControlName="amount" />
+            </div>
+
+            <button type="submit" class="btn btn-block" [disabled]="!canConvert()">
+                @if (!isConverting()) {
+                <span>Convert</span>
+                } @else {
+                <span>Converting…</span>
+                }
+            </button>
+
+            @if (hasResult() && lastConverted(); as last) {
+            <div class="result" aria-live="polite">
+                <span class="result-from">{{ last.amount }} {{ last.from }}</span>
+                <span class="material-icons-outlined result-arrow" aria-hidden="true">arrow_downward</span>
+                <span class="result-to">{{ resultSum() }} {{ last.to }}</span>
+            </div>
+            }
+        </form>
+    </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+    <div class="container">
+        @if (isAuthenticated()) {
+        <app-conversions></app-conversions>
+        } @else {
+        <div class="history-cta">
+            <span class="material-icons-outlined" aria-hidden="true">history</span>
+            <div>
+                <h2>Want to keep a history?</h2>
+                <p class="text-muted">
+                    Sign in with Google to save your conversions. We only store the inputs and results.
+                </p>
+            </div>
+            <a class="btn" routerLink="/login" [queryParams]="{ returnUrl: '/applications/converter' }">
+                Sign in
+            </a>
+        </div>
+        }
+    </div>
+</section>

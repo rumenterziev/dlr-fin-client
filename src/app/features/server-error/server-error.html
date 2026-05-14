@@ -1,0 +1,19 @@
+<section class="error-page section">
+    <div class="container container-narrow text-center">
+        <div class="error-code" aria-hidden="true">500</div>
+        <h1>Something went wrong</h1>
+        <p class="lead">
+            Our server hit a bump. We're looking into it — try again in a moment, or head back home.
+        </p>
+        <div class="error-actions">
+            <button type="button" class="btn" (click)="goHome()">
+                <span class="material-icons-outlined" aria-hidden="true">home</span>
+                Back to home
+            </button>
+            <button type="button" class="btn btn-ghost" (click)="reload()">
+                <span class="material-icons-outlined" aria-hidden="true">refresh</span>
+                Retry
+            </button>
+        </div>
+    </div>
+</section>

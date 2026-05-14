@@ -1,0 +1,90 @@
+<section class="chat-page">
+    <div class="container chat-shell">
+        <header class="chat-header">
+            <div>
+                <span class="eyebrow">AI assistant</span>
+                <h1>Chat with AI</h1>
+            </div>
+            <button type="button" class="btn btn-ghost btn-sm" (click)="newChat()"
+                [disabled]="messages.length === 0 && !isTyping">
+                <span class="material-icons-outlined" aria-hidden="true">refresh</span>
+                New chat
+            </button>
+        </header>
+
+        <div class="chat-messages" #scrollContainer (scroll)="onScroll()" role="log" aria-live="polite"
+            aria-relevant="additions">
+            @if (messages.length === 0 && !isTyping) {
+            <div class="chat-empty">
+                <div class="chat-empty-icon">
+                    <span class="material-icons-outlined" aria-hidden="true">smart_toy</span>
+                </div>
+                <h2>How can I help you today?</h2>
+                <p class="text-muted">Try one of these prompts to get started.</p>
+                <div class="suggestions">
+                    @for (s of suggestions; track s) {
+                    <button type="button" class="suggestion" (click)="useSuggestion(s)">
+                        {{ s }}
+                    </button>
+                    }
+                </div>
+            </div>
+            }
+
+            @for (message of messages; track $index; let i = $index; let last = $last) {
+            <article class="chat-message" [class.user]="message.sender === 'user'" [class.ai]="message.sender === 'ai'">
+                <div class="avatar" aria-hidden="true">
+                    <span class="material-icons-outlined">
+                        {{ message.sender === 'user' ? 'person' : 'smart_toy' }}
+                    </span>
+                </div>
+                <div class="bubble">
+                    <div class="message-content" [innerHTML]="message.text"></div>
+                    @if (message.sender === 'ai') {
+                    <div class="message-actions">
+                        <button type="button" class="msg-action" (click)="copyMessage(message.text)"
+                            aria-label="Copy message">
+                            <span class="material-icons-outlined" aria-hidden="true">content_copy</span>
+                        </button>
+                        @if (last && !isTyping) {
+                        <button type="button" class="msg-action" (click)="regenerate()"
+                            aria-label="Regenerate response">
+                            <span class="material-icons-outlined" aria-hidden="true">autorenew</span>
+                        </button>
+                        }
+                    </div>
+                    }
+                </div>
+            </article>
+            }
+
+            @if (isTyping) {
+            <div class="chat-message ai" aria-label="AI is typing">
+                <div class="avatar" aria-hidden="true">
+                    <span class="material-icons-outlined">smart_toy</span>
+                </div>
+                <div class="bubble">
+                    <div class="typing-indicator" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        @if (showScrollFab) {
+        <button type="button" class="scroll-fab" (click)="scrollToBottomFromFab()" aria-label="Scroll to bottom">
+            <span class="material-icons-outlined" aria-hidden="true">arrow_downward</span>
+        </button>
+        }
+
+        <form (ngSubmit)="sendMessage()" class="chat-input">
+            <input type="text" [(ngModel)]="userInput" name="chatInput" placeholder="Ask anything…" autocomplete="off"
+                aria-label="Message" />
+            <button type="submit" class="btn btn-icon" [disabled]="!userInput.trim() || isTyping"
+                aria-label="Send message">
+                <span class="material-icons-outlined" aria-hidden="true">send</span>
+            </button>
+        </form>
+    </div>
+</section>

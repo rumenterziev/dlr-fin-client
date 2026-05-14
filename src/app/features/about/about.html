@@ -1,0 +1,160 @@
+<section class="about-hero section">
+    <div class="container container-narrow text-center">
+        <img class="about-avatar" src="images/profile.jpg" alt="Portrait of Rumen Terziev" loading="eager" />
+        <span class="eyebrow">About</span>
+        <h1>Hi, I'm Rumen Terziev.</h1>
+        <p class="lead">
+            A full-stack developer focused on building efficient, scalable and user-focused web applications.
+            I love turning rough ideas into polished products.
+        </p>
+    </div>
+</section>
+
+<section class="container container-narrow about-content section-sm">
+    <h2>My story</h2>
+    <p>
+        My journey started with a free online Java course at SoftUni — and turned into a career.
+        Since then I've earned a diploma in Software Engineering and spent nearly three years
+        shipping production code across a variety of projects, growing both technically and as a teammate.
+    </p>
+
+    <h2>What I do</h2>
+    <p>
+        I specialize in <strong>Java</strong>, <strong>Spring Boot</strong>, <strong>Angular</strong>,
+        <strong>Python</strong> and <strong>MySQL</strong>, with production deployments on Microsoft Azure.
+        I work daily with Docker, Jenkins, Git, Redis and Jira. Outside of work, I keep building full-stack
+        pet projects from scratch — front to back — to stay sharp.
+    </p>
+</section>
+
+<section class="container section-sm">
+    <div class="section-header">
+        <span class="eyebrow">Skills</span>
+        <h2>What I work with</h2>
+    </div>
+
+    <div class="skills-groups">
+        @for (g of skillGroups; track g.title) {
+        <div class="skill-group">
+            <h3 class="skill-title">
+                <span class="material-icons-outlined" aria-hidden="true">{{ g.icon }}</span>
+                {{ g.title }}
+            </h3>
+            <ul class="cluster" role="list">
+                @for (s of g.items; track s) {
+                <li><span class="chip chip-neutral">{{ s }}</span></li>
+                }
+            </ul>
+        </div>
+        }
+    </div>
+</section>
+
+<section class="container section-sm">
+    <div class="section-header">
+        <span class="eyebrow">Career</span>
+        <h2>Experience</h2>
+    </div>
+
+    <ol class="timeline" role="list">
+        @for (item of experience; track $index) {
+        <li class="tl-item">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-content">
+                <span class="tl-date">{{ item.date }}</span>
+                <h3>{{ item.title }}</h3>
+                @if (item.company) {
+                <p class="tl-company">
+                    <span class="material-icons-outlined" aria-hidden="true">business</span>
+                    {{ item.company }}@if (item.location) {<span> · {{ item.location }}</span>}
+                </p>
+                }
+                <p>{{ item.text }}</p>
+                @if (item.tech?.length) {
+                <ul class="cluster tl-tech" role="list">
+                    @for (t of item.tech; track t) {
+                    <li><span class="chip chip-neutral">{{ t }}</span></li>
+                    }
+                </ul>
+                }
+            </div>
+        </li>
+        }
+    </ol>
+</section>
+
+<section class="container section-sm">
+    <div class="section-header">
+        <span class="eyebrow">Learning</span>
+        <h2>Education</h2>
+    </div>
+
+    <ol class="timeline" role="list">
+        @for (item of education; track $index) {
+        <li class="tl-item">
+            <div class="tl-dot" aria-hidden="true"></div>
+            <div class="tl-content">
+                <span class="tl-date">{{ item.date }}</span>
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.text }}</p>
+            </div>
+        </li>
+        }
+    </ol>
+</section>
+
+<section class="container section-sm">
+    <div class="section-header">
+        <span class="eyebrow">Credentials</span>
+        <h2>Certifications</h2>
+    </div>
+
+    <div class="grid grid-2 cert-grid">
+        @for (c of certificates; track c.title) {
+        <button type="button" class="cert-card" (click)="openCert(c)" [attr.aria-label]="'View ' + c.title">
+            <span class="cert-img-wrap">
+                <img [src]="c.image" [alt]="c.title" loading="lazy" />
+            </span>
+            <span class="cert-title">{{ c.title }}</span>
+            <span class="cert-issuer">{{ c.issuer }}</span>
+        </button>
+        }
+    </div>
+</section>
+
+<section class="container section-sm">
+    <div class="connect-card">
+        <div>
+            @if (availability === 'open') {
+            <span class="availability-pill" aria-label="Currently available">
+                <span class="availability-dot" aria-hidden="true"></span>
+                Available for new opportunities
+            </span>
+            }
+            <span class="eyebrow">Let's connect</span>
+            <h2>Open to interesting work and good conversations.</h2>
+            <p class="lead">Find me on LinkedIn or GitHub, or just send an email.</p>
+        </div>
+        <div class="connect-actions">
+            <a class="btn btn-lg" href="https://www.linkedin.com/in/rumen-terziev-a511a7272/" target="_blank"
+                rel="noopener">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path fill="currentColor"
+                        d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.21 0 22.23 0z" />
+                </svg>
+                LinkedIn
+            </a>
+            <a class="btn btn-outline btn-lg" href="https://github.com/RumenTerziev" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path fill="currentColor"
+                        d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.05c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.27-5.24-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17a10.95 10.95 0 0 1 5.74 0c2.19-1.48 3.15-1.17 3.15-1.17.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.07 0 4.4-2.7 5.36-5.27 5.65.41.36.78 1.05.78 2.12v3.14c0 .31.21.68.8.56C20.21 21.39 23.5 17.07 23.5 12 23.5 5.65 18.35.5 12 .5z" />
+                </svg>
+                GitHub
+            </a>
+            <a class="btn btn-ghost btn-lg" href="mailto:hello@example.com">
+                <span class="material-icons-outlined" aria-hidden="true">mail</span>
+                Email me
+            </a>
+        </div>
+    </div>
+</section>

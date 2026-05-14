@@ -1,0 +1,54 @@
+<div class="conversions-card">
+    <header class="conversions-header">
+        <div>
+            <h2>Conversion history</h2>
+            <p class="text-muted">{{ totalRecords() }} total record{{ totalRecords() === 1 ? '' : 's' }}</p>
+        </div>
+    </header>
+
+    @if (conversions().length === 0) {
+    <div class="conversions-empty">
+        <span class="material-icons-outlined" aria-hidden="true">history</span>
+        <p>No conversions yet. Run a conversion above to see it here.</p>
+    </div>
+    } @else {
+    <div class="table-wrap">
+        <table class="conversions-table">
+            <thead>
+                <tr>
+                    <th scope="col">From</th>
+                    <th scope="col" class="num">Amount</th>
+                    <th scope="col">To</th>
+                    <th scope="col" class="num">Result</th>
+                    <th scope="col" class="num">Rate</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (c of conversions(); track c.createdAt) {
+                <tr>
+                    <td><span class="chip chip-neutral">{{ c.fromCurrency }}</span></td>
+                    <td class="num">{{ c.amount }}</td>
+                    <td><span class="chip chip-neutral">{{ c.toCurrency }}</span></td>
+                    <td class="num strong">{{ c.resultSum }}</td>
+                    <td class="num">{{ c.currencyRate }}</td>
+                    <td class="muted">{{ c.createdAt }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        <button type="button" class="btn btn-ghost btn-sm" [disabled]="disablePreviousPage()" (click)="previousPage()">
+            <span class="material-icons-outlined" aria-hidden="true">chevron_left</span>
+            Previous
+        </button>
+        <span class="page-indicator">Page {{ page() }}</span>
+        <button type="button" class="btn btn-ghost btn-sm" [disabled]="disableNextPage()" (click)="nextPage()">
+            Next
+            <span class="material-icons-outlined" aria-hidden="true">chevron_right</span>
+        </button>
+    </div>
+    }
+</div>

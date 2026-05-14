@@ -1,0 +1,135 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <span class="eyebrow">Software Engineer · Sofia, Bulgaria</span>
+      <h1 id="hero-title">
+        Building polished web apps,
+        <span class="text-accent">end&#8209;to&#8209;end.</span>
+      </h1>
+      <p class="lead">
+        Hi, I'm Rumen. I design and build clean, accessible web applications with Angular, Java
+        and Spring Boot — including the AI assistant and currency converter you'll find here.
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-lg" routerLink="/applications">
+          <span class="material-icons-outlined" aria-hidden="true">apps</span>
+          Try the applications
+        </a>
+        <a class="btn btn-outline btn-lg" routerLink="/about">
+          <span class="material-icons-outlined" aria-hidden="true">person</span>
+          About me
+        </a>
+      </div>
+
+      <div class="hero-stats" aria-label="Quick stats">
+        <div class="stat">
+          <span class="stat-num">4+</span>
+          <span class="stat-label">Years coding</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">2</span>
+          <span class="stat-label">Live apps</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-portrait">
+        <div class="halo"></div>
+        <div class="avatar-frame">
+          <img src="images/profile.jpg" alt="" />
+        </div>
+      </div>
+      <div class="hero-tags">
+        <div class="floating-tag tag-1">
+          <span class="tag-dot tag-dot-spring" aria-hidden="true"></span>
+          Spring Boot
+        </div>
+        <div class="floating-tag tag-2">
+          <span class="tag-dot tag-dot-angular" aria-hidden="true"></span>
+          Angular
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features section" aria-labelledby="apps-title">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Featured apps</span>
+      <h2 id="apps-title">Real tools, not just screenshots.</h2>
+      <p class="lead">Each one is a full-stack project — Angular front, Spring Boot back, deployed and live.</p>
+    </div>
+
+    <div class="grid grid-2 features-grid">
+      <article class="card card-hover feature">
+        <div class="feature-icon" aria-hidden="true">
+          <span class="material-icons-outlined">currency_exchange</span>
+        </div>
+        <h3>Currency converter</h3>
+        <p>Live rates between BGN, EUR, USD and CAD with instant feedback and history.</p>
+        <div class="cluster" aria-label="Tech tags">
+          <span class="chip">Angular</span>
+          <span class="chip">Spring Boot</span>
+          <span class="chip">REST</span>
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" routerLink="/applications/converter">
+          Open app
+          <span class="material-icons-outlined" aria-hidden="true">arrow_forward</span>
+        </button>
+      </article>
+
+      <article class="card card-hover feature">
+        <div class="feature-icon" aria-hidden="true">
+          <span class="material-icons-outlined">auto_awesome</span>
+        </div>
+        <h3>AI chat assistant</h3>
+        <p>Ask anything — code help, summaries, explanations — with a smooth streaming chat UI.</p>
+        <div class="cluster" aria-label="Tech tags">
+          <span class="chip">Angular</span>
+          <span class="chip">LLM</span>
+          <span class="chip">Markdown</span>
+        </div>
+        <button type="button" class="btn btn-ghost btn-sm" (click)="goToChat()">
+          Open app
+          <span class="material-icons-outlined" aria-hidden="true">arrow_forward</span>
+        </button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="skills section" aria-labelledby="tech-title">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Tech stack</span>
+      <h2 id="tech-title">My everyday toolbox.</h2>
+    </div>
+
+    <ul class="tech-grid" role="list">
+      @for (t of techStack; track t.name) {
+      <li class="tech-item">
+        <div class="tech-logo">
+          <span class="material-icons-outlined" aria-hidden="true">{{ t.icon }}</span>
+        </div>
+        <span>{{ t.name }}</span>
+      </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="cta-strip section">
+  <div class="container cta-card">
+    <div>
+      <h2>Curious to see more?</h2>
+      <p class="lead">Read the story behind the projects, or get in touch directly.</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-lg" routerLink="/about">About me</a>
+      <a class="btn btn-outline btn-lg" href="mailto:hello@example.com">Get in touch</a>
+    </div>
+  </div>
+</section>

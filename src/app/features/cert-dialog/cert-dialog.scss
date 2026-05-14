@@ -1,0 +1,46 @@
+:host {
+  display: block;
+}
+.cert-dialog-content {
+  background: var(--surface-1);
+  color: var(--text-primary);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  max-width: 80rem;
+}
+.cert-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+.cert-dialog-header h2 {
+  font-size: var(--text-lg);
+  margin: 0;
+}
+.cert-dialog-header p {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+.icon-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  background: transparent;
+}
+.icon-btn:hover {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 80vh;
+  margin: 0 auto;
+}

@@ -1,0 +1,97 @@
+<div class="auth-page">
+    <aside class="auth-brand">
+        <div class="auth-brand-inner">
+            <a class="brand" routerLink="/home" aria-label="Rumen Terziev — Home">
+                <span class="brand-mark" aria-hidden="true">RT</span>
+                <span class="brand-name">Rumen<span class="brand-accent">.</span>dev</span>
+            </a>
+            <h2 class="brand-headline">
+                Welcome.<br />
+                <span class="text-accent">Sign in with Google.</span>
+            </h2>
+            <p class="brand-copy">
+                Unlock the AI chat assistant and save your conversion history — all in one polished workspace.
+            </p>
+            <ul class="brand-bullets" role="list">
+                <li>
+                    <span class="material-icons-outlined" aria-hidden="true">verified_user</span>
+                    No passwords stored — we delegate sign-in to Google
+                </li>
+                <li>
+                    <span class="material-icons-outlined" aria-hidden="true">privacy_tip</span>
+                    Minimal data: name, email and profile picture
+                </li>
+                <li>
+                    <span class="material-icons-outlined" aria-hidden="true">delete_forever</span>
+                    Delete your account and data at any time
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <section class="auth-form-wrap" aria-labelledby="login-title">
+        <div class="auth-form">
+            <h1 id="login-title" class="form-title">Sign in</h1>
+            <p class="form-subtitle">Continue with your Google account.</p>
+
+            @if (consentRequired()) {
+            <div class="alert alert-warning" role="alert">
+                <span class="material-icons-outlined" aria-hidden="true">privacy_tip</span>
+                Please accept the Privacy Policy below before continuing.
+            </div>
+            }
+
+            @if (showRedirectMessage()) {
+            <div class="alert" role="alert">
+                <span class="material-icons-outlined" aria-hidden="true">info</span>
+                Please sign in to access the requested page.
+            </div>
+            }
+
+            @if (errorMessage(); as msg) {
+            <div class="alert alert-error" role="alert">
+                <span class="material-icons-outlined" aria-hidden="true">error_outline</span>
+                {{ msg }}
+            </div>
+            }
+
+            <div class="stack-lg">
+                <label class="consent-check">
+                    <input type="checkbox" [checked]="consent()"
+                        (change)="toggleConsent($any($event.target).checked)" />
+                    <span>
+                        I have read and agree to the
+                        <a routerLink="/privacy">Privacy Policy</a>
+                        and
+                        <a routerLink="/terms">Terms</a>.
+                    </span>
+                </label>
+
+                <button type="button" class="btn btn-outline btn-lg btn-block btn-google" (click)="loginWithGoogle()"
+                    [disabled]="!canContinue()" [attr.aria-disabled]="!canContinue()"
+                    [attr.title]="canContinue() ? null : 'Please accept the Privacy Policy to continue'">
+                    <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">
+                        <path fill="#FFC107"
+                            d="M43.6 20.5H42V20H24v8h11.3C33.7 32.4 29.3 35.5 24 35.5c-6.4 0-11.5-5.1-11.5-11.5S17.6 12.5 24 12.5c2.9 0 5.6 1.1 7.6 2.9l5.7-5.7C33.6 6.3 29 4.5 24 4.5 13.2 4.5 4.5 13.2 4.5 24S13.2 43.5 24 43.5 43.5 34.8 43.5 24c0-1.2-.1-2.4-.4-3.5z" />
+                        <path fill="#FF3D00"
+                            d="m6.3 14.7 6.6 4.8C14.7 16 19 12.5 24 12.5c2.9 0 5.6 1.1 7.6 2.9l5.7-5.7C33.6 6.3 29 4.5 24 4.5c-7 0-13 4.1-15.7 10.2z" />
+                        <path fill="#4CAF50"
+                            d="M24 43.5c5 0 9.4-1.7 12.8-4.6l-5.9-5c-1.9 1.4-4.3 2.1-6.9 2.1-5.3 0-9.8-3.4-11.4-8.1l-6.6 5.1C8.7 39.4 15.7 43.5 24 43.5z" />
+                        <path fill="#1976D2"
+                            d="M43.6 20.5H42V20H24v8h11.3c-.7 2-2 3.7-3.5 5l5.9 5c.5-.5 6.3-4.6 6.3-14 0-1.2-.1-2.4-.4-3.5z" />
+                    </svg>
+                    @if (isSubmitting()) {
+                    <span>Redirecting…</span>
+                    } @else {
+                    <span>Continue with Google</span>
+                    }
+                </button>
+
+                <p class="form-footnote text-muted">
+                    By continuing you'll be redirected to Google. We only request your name, email and
+                    profile picture. Policy version {{ policyVersion() }} · updated {{ policyLastUpdated }}.
+                </p>
+            </div>
+        </div>
+    </section>
+</div>

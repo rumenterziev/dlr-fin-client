@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+@use './styles/material-theme';
+@use './styles/tokens';
+@use './styles/reset';
+@use './styles/typography';
+@use './styles/utilities';
+
+#app-main,
+.app-main {
+  min-height: calc(100vh - var(--header-height));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-0);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+.mdc-snackbar.snack-error .mdc-snackbar__surface {
+  background: #7f1d1d !important;
+  color: #fff !important;
+}
+.mdc-snackbar.snack-error .mdc-button__label,
+.mdc-snackbar.snack-error .mat-mdc-button {
+  color: #fecaca !important;
+}
+.mdc-snackbar.snack-success .mdc-snackbar__surface {
+  background: var(--accent) !important;
+  color: #06281d !important;
+}
+.mdc-snackbar.snack-success .mdc-button__label {
+  color: #06281d !important;
+  font-weight: 600;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: var(--space-3);
+  background: var(--accent);
+  color: #06281d;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  z-index: 2000;
+  transition: top 160ms ease;
+}
+.skip-link:focus {
+  top: var(--space-3);
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
