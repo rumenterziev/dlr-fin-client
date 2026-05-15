@@ -10,8 +10,8 @@ env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   REGION: europe-west1
   REGISTRY: europe-west1-docker.pkg.dev
-  REPO: dlr-fin
-  IMAGE: dlrfinflow
+  REPO: dlrfin
+  IMAGE: dlr-fin-client
 
 jobs:
   build-and-push:
