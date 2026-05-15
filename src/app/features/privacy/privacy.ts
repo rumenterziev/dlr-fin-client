@@ -17,7 +17,8 @@ export class Privacy {
   constructor() {
     inject(SeoService).update({
       title: 'Privacy Policy',
-      description: 'Privacy policy for rumen.dev — what data is collected and how it is used.',
+      description:
+        'Privacy policy for rumenterziev.eu — what data is collected and how it is used.',
       path: '/privacy',
     });
   }

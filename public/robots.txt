@@ -3,4 +3,4 @@ Allow: /
 Disallow: /login
 Disallow: /profile
 
-Sitemap: https://rumen.dev/sitemap.xml
+Sitemap: https://rumenterziev.eu/sitemap.xml
