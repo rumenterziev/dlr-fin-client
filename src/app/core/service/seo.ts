@@ -27,7 +27,7 @@ export class SeoService {
     const pageTitle = data.title === SITE_NAME ? data.title : `${data.title} · Rumen Terziev`;
     this.title.setTitle(pageTitle);
 
-    const origin = this.document.defaultView?.location?.origin ?? 'https://rumen.dev';
+    const origin = this.document.defaultView?.location?.origin ?? 'https://rumenterziev.eu';
     const url = origin + (data.path ?? this.document.defaultView?.location?.pathname ?? '/');
     const image = data.image
       ? data.image.startsWith('http')

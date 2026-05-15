@@ -17,7 +17,7 @@ export class Terms {
   constructor() {
     inject(SeoService).update({
       title: 'Terms of Service',
-      description: 'Terms of service for rumen.dev.',
+      description: 'Terms of service for rumenterziev.eu.',
       path: '/terms',
     });
   }

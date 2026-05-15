@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rumen.dev/home</loc>
+    <loc>https://rumenterziev.eu/home</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://rumen.dev/about</loc>
+    <loc>https://rumenterziev.eu/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rumen.dev/applications</loc>
+    <loc>https://rumenterziev.eu/applications</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rumen.dev/applications/converter</loc>
+    <loc>https://rumenterziev.eu/applications/converter</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rumen.dev/applications/chat-ai</loc>
+    <loc>https://rumenterziev.eu/applications/chat-ai</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rumen.dev/privacy</loc>
+    <loc>https://rumenterziev.eu/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://rumen.dev/terms</loc>
+    <loc>https://rumenterziev.eu/terms</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
