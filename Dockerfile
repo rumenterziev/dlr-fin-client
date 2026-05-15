@@ -8,6 +8,7 @@ RUN npm run build
 FROM nginx:alpine AS runtime
 
 COPY --from=build /dlr-fin/dist/dlr-fin/browser /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/templates/default.conf.template
 
 ENV PORT=8080 \
