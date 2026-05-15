@@ -15,7 +15,7 @@ export interface SeoData {
 }
 
 const SITE_NAME = 'Rumen Terziev — Software Engineer';
-const DEFAULT_IMAGE = '/images/avatar.avif';
+const DEFAULT_IMAGE = '/images/og-cover.png';
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
