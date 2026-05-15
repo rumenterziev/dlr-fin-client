@@ -31,8 +31,10 @@ export class Home {
     { name: 'TypeScript', icon: 'code' },
     { name: 'Spring Boot', icon: 'eco' },
     { name: 'Java', icon: 'coffee' },
+    { name: 'Python', icon: 'terminal' },
     { name: 'MySQL', icon: 'storage' },
-    { name: 'Azure', icon: 'cloud' },
+    { name: 'Google Cloud', icon: 'cloud' },
+    { name: 'Azure', icon: 'cloud_queue' },
   ];
 
   goToChat(): void {

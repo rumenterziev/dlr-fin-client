@@ -40,7 +40,7 @@ export class About {
     inject(SeoService).update({
       title: 'About',
       description:
-        'About Rumen Terziev — software engineer based in Sofia, Bulgaria. Experience, skills and certifications in Angular, Java, Spring Boot and the cloud.',
+        'About Rumen Terziev — software engineer based in Plovdiv, Bulgaria. Experience, skills and certifications in Angular, Java, Spring Boot and the cloud.',
       path: '/about',
     });
   }
