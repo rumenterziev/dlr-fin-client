@@ -26,18 +26,20 @@ export class AuthService {
     const url = '/api/v1/auth/logout';
     this.user.set(null);
     localStorage.removeItem('userData');
-    return this.http.post<void>(url, {}).pipe(catchError(this.handleError));
+    return this.http
+      .post<void>(url, {}, { withCredentials: true })
+      .pipe(catchError(this.handleError));
   }
 
   autoLogin(): void {
-    this.http.get<User>('/api/v1/users/profile').subscribe({
+    this.http.get<User>('/api/v1/users/profile', { withCredentials: true }).subscribe({
       next: (user) => this.user.set(user ? new User(user.username) : null),
       error: () => this.user.set(null),
     });
   }
 
   autoLoginFetch(): Observable<User | null> {
-    return this.http.get<User>('/api/v1/users/profile').pipe(
+    return this.http.get<User>('/api/v1/users/profile', { withCredentials: true }).pipe(
       map((user) => (user ? new User(user.username) : null)),
       catchError(() => of(null)),
     );
