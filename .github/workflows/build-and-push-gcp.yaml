@@ -95,7 +95,7 @@ jobs:
             --port=8080 \
             --memory=2048Mi \
             --cpu=1 \
-            --set-env-vars="API_URL=${{ secrets.API_URL }}, PORT=8080" \
+            --set-env-vars="API_URL=${{ secrets.API_URL }}" \
             --min-instances=1 \
             --max-instances=1 \
             --timeout=60 \
