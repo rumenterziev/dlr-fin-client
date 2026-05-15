@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FinUser } from '../../core/model/fin-user.model';
 import { PrivacyService } from '../../core/service/privacy';
 import { AuthService } from '../../core/service/auth';
+import { SeoService } from '../../core/service/seo';
 
 const FALLBACK_AVATAR = 'images/avatar.avif';
 
@@ -22,6 +23,15 @@ export class Profile implements OnInit {
   private readonly privacy = inject(PrivacyService);
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+
+  constructor() {
+    inject(SeoService).update({
+      title: 'Profile',
+      description: 'Manage your account, data and privacy settings.',
+      path: '/profile',
+      noIndex: true,
+    });
+  }
 
   readonly finUser = signal<FinUser | null>(null);
   readonly isLoading = signal(true);

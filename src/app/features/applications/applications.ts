@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/service/auth';
+import { SeoService } from '../../core/service/seo';
 
 interface AppCard {
   route: string;
@@ -23,6 +24,15 @@ export class Applications {
   private readonly auth = inject(AuthService);
 
   readonly isAuthenticated = computed(() => !!this.auth.user());
+
+  constructor() {
+    inject(SeoService).update({
+      title: 'Applications',
+      description:
+        'Explore live full-stack applications by Rumen Terziev: a multi-currency converter and an AI chat assistant, built with Angular and Spring Boot.',
+      path: '/applications',
+    });
+  }
 
   readonly apps: AppCard[] = [
     {

@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterLink } from '@angular/router';
 import { ConverterService } from '../../../core/service/converter';
 import { AuthService } from '../../../core/service/auth';
+import { SeoService } from '../../../core/service/seo';
 import { Converted } from '../../../core/model/converted.model';
 import { Conversions } from './conversions/conversions';
 
@@ -28,6 +29,15 @@ export class Converter {
   private readonly snack = inject(MatSnackBar);
 
   readonly isAuthenticated = computed(() => !!this.authService.user());
+
+  constructor() {
+    inject(SeoService).update({
+      title: 'Currency Converter',
+      description:
+        'Convert between BGN, EUR, USD and CAD with live rates, instant feedback and conversion history. Built with Angular and Spring Boot.',
+      path: '/applications/converter',
+    });
+  }
 
   readonly currencies: CurrencyOption[] = [
     { code: 'BGN', name: 'Bulgarian Lev', flag: 'flags/bg.svg' },

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../core/service/auth';
+import { SeoService } from '../../core/service/seo';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,15 @@ import { AuthService } from '../../core/service/auth';
 export class Home {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+
+  constructor() {
+    inject(SeoService).update({
+      title: 'Rumen Terziev — Software Engineer',
+      description:
+        'Portfolio of Rumen Terziev — full-stack software engineer building polished web applications with Angular, Java and Spring Boot. Try the AI chat assistant and currency converter.',
+      path: '/home',
+    });
+  }
 
   readonly isAuthenticated = computed(() => !!this.authService.user());
 

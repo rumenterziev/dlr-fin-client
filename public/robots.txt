@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /profile
+
+Sitemap: https://rumen.dev/sitemap.xml

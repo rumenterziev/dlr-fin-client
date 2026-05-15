@@ -9,6 +9,7 @@ import {
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/service/auth';
 import { PrivacyService } from '../../core/service/privacy';
+import { SeoService } from '../../core/service/seo';
 import {
   CONSENT_STORAGE_KEY,
   ConsentRecord,
@@ -27,6 +28,15 @@ export class Login implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly privacyService = inject(PrivacyService);
   private readonly route = inject(ActivatedRoute);
+
+  constructor() {
+    inject(SeoService).update({
+      title: 'Sign in',
+      description: 'Sign in to access the AI chat assistant and your profile.',
+      path: '/login',
+      noIndex: true,
+    });
+  }
 
   readonly fallbackPolicyVersion = POLICY_VERSION;
   readonly policyLastUpdated = POLICY_LAST_UPDATED;

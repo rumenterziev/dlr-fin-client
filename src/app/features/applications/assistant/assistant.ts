@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AssistantService } from '../../../core/service/assistant';
+import { SeoService } from '../../../core/service/seo';
 import { ChatMessage } from '../../../core/model/chat-message.model';
 
 @Component({
@@ -17,6 +18,15 @@ export class Assistant {
 
   private readonly assistantService = inject(AssistantService);
   private readonly snack = inject(MatSnackBar);
+
+  constructor() {
+    inject(SeoService).update({
+      title: 'AI Chat Assistant',
+      description:
+        'Chat with an AI assistant for code help, summaries and explanations. Smooth streaming UI with Markdown support.',
+      path: '/applications/chat-ai',
+    });
+  }
 
   messages: ChatMessage[] = [];
   userInput = '';

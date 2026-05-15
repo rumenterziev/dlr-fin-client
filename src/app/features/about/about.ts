@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { CertDialog } from '../cert-dialog/cert-dialog';
+import { SeoService } from '../../core/service/seo';
 
 interface SkillGroup {
   title: string;
@@ -34,6 +35,15 @@ interface Cert {
 })
 export class About {
   private readonly dialog = inject(MatDialog);
+
+  constructor() {
+    inject(SeoService).update({
+      title: 'About',
+      description:
+        'About Rumen Terziev — software engineer based in Sofia, Bulgaria. Experience, skills and certifications in Angular, Java, Spring Boot and the cloud.',
+      path: '/about',
+    });
+  }
   readonly skillGroups: SkillGroup[] = [
     {
       title: 'Languages',
